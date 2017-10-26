@@ -9,6 +9,7 @@
 * No se permite: Usar memorias USB, acceder a redes sociales, clientes de correo, o sistemas de almacenamiento en la nube (Google Drive, DropBox, etc). El uso de éstos implicará anulación.
 * Clone el proyecto con GIT, NO lo descargue directamente.
 * NO modifique los indicado en consultaEntradasForos.xhtml.
+* El filtrado y ordenamiento de los datos DEBE realizarse en el motor de base de datos, a través del uso de SQL. Consultar todos los datos y filtrarlos en el servidor de aplicaciones -que es supremamente INEFICIENTE- se evaluará como INCORRECTO.
 
 
 
