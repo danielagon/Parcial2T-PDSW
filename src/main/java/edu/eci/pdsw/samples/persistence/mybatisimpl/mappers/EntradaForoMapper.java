@@ -32,7 +32,9 @@ import org.apache.ibatis.annotations.Select;
 public interface EntradaForoMapper {
     
     
-    List<EntradaForo> getEntradaForo();
+    public List<EntradaForo> getEntradaForo();
+    public EntradaForo getForoId(@Param("idF") int id);
+    public List<EntradaForo> getForosVulgaridades();
     
     
 }

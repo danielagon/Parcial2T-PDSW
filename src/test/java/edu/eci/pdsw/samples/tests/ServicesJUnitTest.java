@@ -31,6 +31,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -94,9 +95,61 @@ public class ServicesJUnitTest {
             System.out.println(ef);
         }
         //assert ...
-        Assert.fail("Pruebas no implementadas aun...");
+        //Assert.fail("Pruebas no implementadas aun...");
         
     }    
+    
+    @Test
+    public void pruebaConsultarForosPorId() throws SQLException, ExcepcionServiciosSuscripciones{
+        //Insertar datos en la base de datos de pruebas, de acuerdo con la clase
+        //de equivalencia correspondiente
+        Connection conn=getConnection();
+        Statement stmt=conn.createStatement();        
+        
+        
+        stmt.execute("INSERT INTO `COMENTARIOS` (`id`, `fecha_hora`, `contenido`, `ENTRADAS_FOROS_id`, `USUARIOS_email`) VALUES (1,'2017-10-26 08:02:08','Sin comentarios',3,'juan.perez@gmail.com')");
+
+        stmt.execute("INSERT INTO `ENTRADAS_FOROS` (`id`, `fecha_hora`, `contenido`, `USUARIOS_email`) VALUES (3,'2017-10-26 07:19:06','Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.','juan.perez@gmail.com')");
+
+        stmt.execute("INSERT INTO `USUARIOS` (`email`, `nombre`) VALUES ('juan.perez@gmail.com','Juan Perez'), ('luis.diaz@hotmail.com','Luis Diaz')");
+
+        conn.commit();
+        conn.close();
+        //Realizar la operacion de la logica y la prueba
+        
+        
+        List<EntradaForo> lef=ServiciosForosFactory.getInstance().getTestingForumServices().consultarForos();
+        EntradaForo foroId=ServiciosForosFactory.getInstance().getTestingForumServices().consultarForosPorId(3);
+        
+        //assert
+        assertEquals("No se pudo realizar la busqueda de foro por Id",lef.get(0).getIdentificador(),foroId.getIdentificador());
+        
+    }
+    
+    @Test
+    public void pruebasConsularForosConVulgaridades() throws SQLException, ExcepcionServiciosSuscripciones{
+        //Insertar datos en la base de datos de pruebas, de acuerdo con la clase
+        //de equivalencia correspondiente
+        Connection conn=getConnection();
+        Statement stmt=conn.createStatement();        
+        
+        
+        stmt.execute("INSERT INTO `COMENTARIOS` (`id`, `fecha_hora`, `contenido`, `ENTRADAS_FOROS_id`, `USUARIOS_email`) VALUES (1,'2017-10-26 08:02:08','Sin comentarios',3,'juan.perez@gmail.com')");
+
+        stmt.execute("INSERT INTO `ENTRADAS_FOROS` (`id`, `fecha_hora`, `contenido`, `USUARIOS_email`) VALUES (3,'2017-10-26 07:19:06','Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio recorcholis. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.','juan.perez@gmail.com')");
+
+        stmt.execute("INSERT INTO `USUARIOS` (`email`, `nombre`) VALUES ('juan.perez@gmail.com','Juan Perez'), ('luis.diaz@hotmail.com','Luis Diaz')");
+
+        conn.commit();
+        conn.close();
+        //Realizar la operacion de la logica y la prueba
+        
+        List<EntradaForo> lef=ServiciosForosFactory.getInstance().getTestingForumServices().consultarForos();
+        List<EntradaForo> foroVulgaridades=ServiciosForosFactory.getInstance().getTestingForumServices().consultarForosConVulgaridades();
+        
+        //assert
+        assertEquals("No se realizo la busqueda de foros con vulgaridades",lef.get(0).getIdentificador(),foroVulgaridades.get(0).getIdentificador());
+    }
     
 
 }

@@ -35,7 +35,12 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class EntradasForosBean {
     
-    
+    private int id;
+    private List<Comentario> comentarios;
+    private EntradaForo foro;
+    private List<EntradaForo> forosVul;
+
+                
     public List<EntradaForo> getData() throws Exception{
         try {
             return ServiciosForosFactory.getInstance().getForumsServices().consultarForos();
@@ -44,6 +49,53 @@ public class EntradasForosBean {
             throw ex;
         }
         
+    }
+    
+    public EntradaForo getForo() throws Exception{
+        try{
+            foro=ServiciosForosFactory.getInstance().getForumsServices().consultarForosPorId(id);
+            return foro;
+        }catch (ExcepcionServiciosSuscripciones ex){
+            throw ex;
+        }
+    }
+    
+    public void setForo(EntradaForo foro) {
+        this.foro = foro;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public List<Comentario> getComentarios() throws Exception {
+        try{
+            comentarios=ServiciosForosFactory.getInstance().getForumsServices().consultarForosPorId(id).getRespuestas();
+            return comentarios;
+        }catch (ExcepcionServiciosSuscripciones ex){
+            throw ex;
+        }
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
+    
+    public List<EntradaForo> getForosVul() throws Exception{
+        try{
+            forosVul=ServiciosForosFactory.getInstance().getForumsServices().consultarForosConVulgaridades();
+            return forosVul;
+        }catch (ExcepcionServiciosSuscripciones ex){
+            throw ex;
+        }
+    }
+
+    public void setForosVul(List<EntradaForo> forosVul) {
+        this.forosVul = forosVul;
     }
     
 }

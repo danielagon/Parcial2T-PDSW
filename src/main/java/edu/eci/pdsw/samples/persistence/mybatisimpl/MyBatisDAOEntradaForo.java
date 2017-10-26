@@ -38,7 +38,11 @@ public class MyBatisDAOEntradaForo implements DaoEntradaForo{
     
     @Override
     public EntradaForo load(int id) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            return efmapper.getForoId(id);
+        }catch(Exception e){
+            throw new PersistenceException("Error al consultar el foro por Id: "+e.getLocalizedMessage(),e);
+        }
     }
 
     @Override
@@ -50,6 +54,15 @@ public class MyBatisDAOEntradaForo implements DaoEntradaForo{
             throw new PersistenceException("Error al consultar los foros:"+e.getLocalizedMessage(), e);
         }
         
+    }
+    
+    @Override
+    public List<EntradaForo> loadForosVulgaridades() throws PersistenceException {
+        try{
+            return efmapper.getForosVulgaridades();
+        }catch (Exception e){
+            throw new PersistenceException("Error al consultar los foros con vulgaridades: "+e.getLocalizedMessage(),e);
+        }
     }
 
     @Override
@@ -66,5 +79,7 @@ public class MyBatisDAOEntradaForo implements DaoEntradaForo{
     public void addToForo(int idForo, Comentario c) throws PersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
     
 }

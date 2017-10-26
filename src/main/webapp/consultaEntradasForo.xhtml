@@ -10,10 +10,32 @@
         <h1>Consulta de foros</h1>
         <h:form>
             <!--Por favor no cambiar el 'id':-->
-            <p:inputText id="id_entrada_foro"></p:inputText>
+            <h:outputText value="Ingresar el id del foro: "/>
+            <p:inputText id="id_entrada_foro" value="#{mb.id}"></p:inputText>
             
             <!--Por favor no cambiar el 'value':-->
-            <p:commandButton value="Consultar"></p:commandButton>
+            <p:commandButton value="Consultar" update="tablaInformacionForo,tablaComentarios"></p:commandButton>
+            
+            <p:dataTable id="tablaInformacionForo" >
+                <p:column headerText="Fecha creacion foro" >
+                    <h:outputText value="#{mb.foro.fechayHora}" />
+                </p:column>
+                <p:column headerText="Pregunta">
+                    <h:outputText value="#{mb.foro.comentario}"/>
+                </p:column>
+                
+            </p:dataTable>
+            <p:dataTable id="tablaComentarios" var="comentarios" value="#{mb.comentarios}">
+                <p:column headerText="Comentario">
+                    <h:outputText value="#{comentarios.contenido}"/>
+                </p:column>
+                <p:column headerText="Fecha">
+                    <h:outputText value="#{comentarios.fechayHora}"/>
+                </p:column>
+                <p:column headerText="Autor">
+                    <h:outputText value="#{comentarios.autor.nombre}"/>
+                </p:column>
+            </p:dataTable>
             
         </h:form>
     </h:body>

@@ -20,6 +20,7 @@ import edu.eci.pdsw.samples.entities.Comentario;
 import edu.eci.pdsw.samples.entities.EntradaForo;
 import edu.eci.pdsw.samples.entities.Usuario;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 /**
  *
@@ -27,9 +28,11 @@ import java.util.List;
  */
 public interface DaoEntradaForo {
  
-    public EntradaForo load(int id) throws PersistenceException;
+    public EntradaForo load( int id) throws PersistenceException;
     
     public List<EntradaForo> loadAll() throws PersistenceException;
+    
+    public List<EntradaForo> loadForosVulgaridades() throws PersistenceException;
     
     public void save(EntradaForo e) throws PersistenceException;
     
