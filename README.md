@@ -3,10 +3,20 @@
 ### PDSW – Procesos de desarrollo de Software
 ### Parcial Segundo Tercio
 
+
+**IMPORTANTE**
+* Se puede consultar en la Web: APIs/Documentación de lenguaje y frameworks (Primefaces, Guice, MyBatis, etc), y enunciados de los laboratorios (se pueden revisar los fuentes incluidos con los dichos enunciados).
+* No se permite: Usar memorias USB, acceder a redes sociales, clientes de correo, o sistemas de almacenamiento en la nube (Google Drive, DropBox, etc). El uso de éstos implicará anulación.
+* Clone el proyecto con GIT, NO lo descargue directamente.
+* NO modifique los indicado en consultaEntradasForos.xhtml.
+
+
+
 Se le han dados los fuentes de un avance parcial de una plataforma de foros en línea. En esta plataforma los usuarios podrán plantear preguntas (entrada foro), y éstos mismos podrán registrar comentarios sobre las mismas.
 
 Para el Sprint en curso, se han seleccionado las siguientes historias de usuario del Backlog de producto:
 
+## Historia de usuario #1
 
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   > **Como** Usuario de la plataforma de foros
@@ -17,6 +27,7 @@ Para el Sprint en curso, se han seleccionado las siguientes historias de usuario
   >
   > **Criterio de aceptación:** Se debe mostrar la fecha de creación de la entrada de foro, la pregunta planteada, y cada uno de los comentarios realizados. Los comentarios deben estar organizados del más reciente (mostrados arriba) al más antíguo, y deben mostrar la fecha, el nombre del autor, y el contenido.
 
+## Historia de usuario #2
 
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   > **Como** Auditor de contenidos de la plataforma
@@ -42,25 +53,47 @@ Mostrar los foros que contengan entradas con malas palabras: carambolas y recorc
 
 
 1.  (20%) A partir de la especificación hecha en los métodos
-    *comentariosRegistrados* y *comentariosMasBajos* de la fachada de
-    servicios (la parte lógica de la aplicación), defina e implemente
-    una prueba para el primer método, y dos para el segundo (para este
-    último, tenga en cuenta el concepto de clase de equivalencia para
-    que las dos pruebas sean de diferente naturaleza). Recuerde que para
-    hacer las pruebas, debe usar la fachada de servicios con el archivo
-    de configuración que hace uso de una base de datos ‘volátil’ H2:
-    h2\_applicationconfig.properties.
+    *consultarForosPorId* y *consultarForosConVulgaridades* de la fachada de
+    servicios (la parte lógica de la aplicación), implemente sólo una prueba (la que considere más importante para validar las especificaciones y los criterios de aceptación). Siga el esquema usado en ServicesJUnitTest para poblar la base de datos volátil y verificar el comportamiento de las operaciones de la lógica.
 
-2.  (40%) Termine la implementación de **SÓLO UNO** de los dos DAOs
-    concretos (el de JDBC o el de MyBATIS, usted decide cual). Recuerde
-    ajustar los archivos de configuración (applicationconfig.properties
-    y h2\_applicationconfig.properties) para que la fábrica de DAOs cree
-    la fábrica concreta que corresponda a la que usted decidió
-    implementar.
+2.  (40%) Implemente la historia de usuario #1, agregando todo lo que haga falta en la capa de presentación, lógica y de persistencia. La vista debe implementarse en consultaEntradasForo.xhtml.
 
-3.  (40%) En las dos páginas xhtml provistas, implemente las dos
-    historias de usuario indicadas. Si hace uso de maven para correr la
-    aplicación (mvn tomcat7:run), por la configuración dada la aplicación
-    será accesible desde:
+3.  (40%)Implemente la historia de usuario #3, agregando todo lo que haga falta en la capa de presentación, lógica y de persistencia. La vista debe implementarse en consultarForosADepurar.xhtml.
 
-http://localhost:8080/app/faces/
+
+## Entrega
+
+Siga al pie de la letra estas indicaciones para la entrega del examen. EL HACER CASO OMISO DE ESTAS INSTRUCCIONES PENALIZARÁ LA NOTA.
+
+1. Limpie el proyecto
+
+	```bash
+	$ mvn clean
+	```
+
+1. Configure su usuario de GIT
+
+	```bash
+	$ git config --global user.name "Juan Perez"
+	$ git config --global user.email juan.perez@escuelaing.edu.co
+	```
+
+2. Desde el directorio raíz (donde está este archivo README.md), haga commit de lo realizado.
+
+	```bash
+	$ git add .
+	$ git commit -m "entrega parcial - Juan Perez"
+	```
+
+
+3. Desde este mismo directorio, comprima todo con: (no olvide el punto al final en la segunda instrucción)
+
+	```bash
+	$ zip -r APELLIDO.NOMBRE.zip .
+	```
+
+4. Abra el archivo ZIP creado, y rectifique que contenga lo desarrollado.
+
+5. Suba el archivo antes creado (APELLIDO.NOMBRE.zip) en el espacio de moodle correspondiente.
+
+6. IMPORTANTE!. Conserve una copia de la carpeta y del archivo .ZIP.
