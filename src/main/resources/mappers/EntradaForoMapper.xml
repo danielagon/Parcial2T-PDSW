@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.EntradaForoMapper">
+               
+    <resultMap type="EntradaForo" id="EntradaForoResult">
+        <id 	property="identificador" column="id"/>
+        <result property="comentario" column="contenido"/>            
+        <result property="fechayHora" column="fecha_hora"/>
+        <association property="autor" columnPrefix="ef_" resultMap="UsuarioResult"></association>
+        <collection property="respuestas" ofType="Comentario" columnPrefix="cmt_" resultMap="ComentarioResult"></collection>            
+    </resultMap>
+    
+    <resultMap type="Comentario" id="ComentarioResult">
+        <id property="contenido" column="contenido"></id>
+        <result property="fechayHora" column="fecha_hora"></result>
+        <association property="autor" columnPrefix="cm_" resultMap="UsuarioResult"></association>
+    </resultMap>
+        
+    <resultMap type="Usuario" id="UsuarioResult">
+        <id property="email" column="email"></id>
+        <result property="nombre" column="nombre"></result>
+    </resultMap>
+    
+    <select id="getEntradaForo" resultMap="EntradaForoResult">
+        select ef.id, ef.fecha_hora, ef.contenido, cm.id as cmt_id, cm.fecha_hora as cmt_fecha_hora, cm.contenido as cmt_contenido, autor.nombre as ef_nombre, autor.email as ef_email, autorcom.nombre as cmt_cm_nombre,  autorcom.email as cmt_cm_email
+        from ENTRADAS_FOROS as ef 
+        LEFT OUTER JOIN COMENTARIOS as cm ON ef.`id` = cm.`ENTRADAS_FOROS_id` 
+        INNER JOIN USUARIOS as autor ON autor.email=ef.USUARIOS_email
+        LEFT OUTER JOIN USUARIOS as autorcom ON autorcom.email=cm.USUARIOS_email
+    </select>
+
+
+  	
+</mapper>
