@@ -43,7 +43,13 @@ public class MyBatisDAOEntradaForo implements DaoEntradaForo{
 
     @Override
     public List<EntradaForo> loadAll() throws PersistenceException {
-        return efmapper.getEntradaForo();
+        try{
+            return efmapper.getEntradaForo();
+        }
+        catch(Exception e){
+            throw new PersistenceException("Error al consultar los foros:"+e.getLocalizedMessage(), e);
+        }
+        
     }
 
     @Override

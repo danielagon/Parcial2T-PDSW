@@ -18,6 +18,7 @@ package edu.eci.pdsw.samples.entities;
 
 import java.sql.Date;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -32,7 +33,7 @@ public class EntradaForo {
     
     private String comentario;
     
-    private Set<Comentario> respuestas;
+    private List<Comentario> respuestas;
     
     private Date fechayHora;
 
@@ -63,11 +64,11 @@ public class EntradaForo {
         this.comentario = comentario;
     }
 
-    public Set<Comentario> getRespuestas() {
+    public List<Comentario> getRespuestas() {
         return respuestas;
     }
 
-    public void setRespuestas(Set<Comentario> respuestas) {
+    public void setRespuestas(List<Comentario> respuestas) {
         this.respuestas = respuestas;
     }
 

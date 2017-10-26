@@ -3,34 +3,32 @@
 ### PDSW – Procesos de desarrollo de Software
 ### Parcial Segundo Tercio
 
-En los fuentes disponibles en el repositorio
+Se le han dados los fuentes de un avance parcial de una plataforma de foros en línea. En esta plataforma los usuarios podrán plantear preguntas (entrada foro), y éstos mismos podrán registrar comentarios sobre las mismas.
 
-<git@gitlab.com:PDSW/PDSW-2015-2-Par2T.git> se tiene la base de un
-proyecto para la consulta de los comentarios que han registrado, a
-través de una aplicación móvil, los suscriptores de una prestigiosa
-editorial. La aplicación será usada por los empleados del departamento
-de control de atención al cliente de dicha editorial, de acuerdo con lo
-indicado en las siguientes historias de usuario:
+Para el Sprint en curso, se han seleccionado las siguientes historias de usuario del Backlog de producto:
+
 
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  > **Como** empleado del departamento de atención al cliente
+  > **Como** Usuario de la plataforma de foros
   >
-  > **Quiero** poder consultar todos los comentarios registrados hasta el momento
+  > **Quiero** Poder consultar un foro a partir de su identificador.
   >
-  > **Para** poder identificar los comentarios que impliquen más riesgo de que se pierda una suscripción.
+  > **Para** Poder hacer una revisión de los comentarios realizados a un foro cuyo identificador ya conozco, y así evitar la búsqueda del mismo.
   >
-  > **Criterio de aceptación:** los comentarios deben estar ordenados por fecha y deben mostrar: fecha, el comentario, y el nombre del cliente.
+  > **Criterio de aceptación:** Se debe mostrar la fecha de creación de la entrada de foro, la pregunta planteada, y cada uno de los comentarios realizados. Los comentarios deben estar organizados del más reciente (mostrados arriba) al más antíguo, y deben mostrar la fecha, el nombre del autor, y el contenido.
+
+
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  > **Como** empleado del departamento de atención al cliente
+  > **Como** Auditor de contenidos de la plataforma
   >
-  > **Quiero** poder consultar todos los comentarios registrados con un puntaje inferior a un valor N indicado
+  > **Quiero** Tener un reporte de aquellos foros en los que se haya realizado algún comentario con lenguaje vulgar.
   >
-  > **Para** poder identificar los problemas que están generando los impactos más negativos
+  > **Para** Conocer con rapidez qué foros debo revisar y tomar medidas al respecto.
   >
-  > **Criterio de aceptación:** se debe permitir ingresar el valor N, los comentarios deben estar ordenados por fecha y deben mostrar: fecha, el comentario, y el nombre del cliente.
+  > **Criterio de aceptación:** El reporte NO debe requerir entrar parámetro alguno. Se considerarán como palabras vulgares: 'recorcholis' y 'carambolas'. El reporte sólo debe contener el identificador de foro y el número de comentarios con palabras vulgares encontrados en el mismo.
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-El modelo de base de datos que soporta la información es el siguiente:
+El modelo de base de datos y de clases asociados a la implementación parcial son los siguientes:
 
 ![](./img/Model.png)
 
