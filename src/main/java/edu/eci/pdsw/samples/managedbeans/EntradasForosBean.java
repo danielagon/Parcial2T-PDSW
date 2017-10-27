@@ -73,12 +73,10 @@ public class EntradasForosBean {
     }
     
     public List<Comentario> getComentarios() throws Exception {
-        try{
+        if (foro!=null){
             comentarios=ServiciosForosFactory.getInstance().getForumsServices().consultarForosPorId(id).getRespuestas();
-            return comentarios;
-        }catch (ExcepcionServiciosSuscripciones ex){
-            throw ex;
         }
+        return comentarios;
     }
 
     public void setComentarios(List<Comentario> comentarios) {

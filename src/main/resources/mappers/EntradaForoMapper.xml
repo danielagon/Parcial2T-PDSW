@@ -46,7 +46,7 @@
         select ef.id, ef.fecha_hora
         from ENTRADAS_FOROS as ef
         LEFT OUTER JOIN COMENTARIOS as cm ON ef.id = cm.ENTRADAS_FOROS_id 
-        WHERE cm.contenido LIKE '%recorcholis%' OR cm.contenido LIKE '%carambolas%'
+        WHERE cm.contenido LIKE '%recorcholis%' OR cm.contenido LIKE '%carambolas%' OR ef.contenido LIKE '%recorcholis%' OR ef.contenido LIKE '%carambolas%'
         ORDER BY ef.fecha_hora
     </select>
 

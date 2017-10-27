@@ -14,14 +14,14 @@
             <p:inputText id="id_entrada_foro" value="#{mb.id}"></p:inputText>
             
             <!--Por favor no cambiar el 'value':-->
-            <p:commandButton value="Consultar" update="tablaInformacionForo,tablaComentarios"></p:commandButton>
+            <p:commandButton value="Consultar" actionListener="#{mb.getForo()}" update="tablaInformacionForo,tablaComentarios"></p:commandButton>
             
-            <p:dataTable id="tablaInformacionForo" >
+            <p:dataTable id="tablaInformacionForo" var="foro" value="#{mb.foro}">
                 <p:column headerText="Fecha creacion foro" >
-                    <h:outputText value="#{mb.foro.fechayHora}" />
+                    <h:outputText value="#{foro.fechayHora}" />
                 </p:column>
                 <p:column headerText="Pregunta">
-                    <h:outputText value="#{mb.foro.comentario}"/>
+                    <h:outputText value="#{foro.comentario}"/>
                 </p:column>
                 
             </p:dataTable>
